@@ -123,9 +123,12 @@ namespace NaughtyAttributes.Editor
                 _foldouts[group.Key].Value = EditorGUILayout.Foldout(_foldouts[group.Key].Value, group.Key, true);
                 if (_foldouts[group.Key].Value)
                 {
-                    foreach (var property in visibleProperties)
+                    using (new EditorGUI.IndentLevelScope())
                     {
-                        NaughtyEditorGUI.PropertyField_Layout(property, true);
+                        foreach (var property in visibleProperties)
+                        {
+                            NaughtyEditorGUI.PropertyField_Layout(property, true);
+                        }
                     }
                 }
             }
